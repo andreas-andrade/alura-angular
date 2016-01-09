@@ -64,4 +64,21 @@ angular.module('minhasDiretivas', [])
     };
 
     return ddo;
+  })
+
+  //diretiva bonus
+
+  .directive('meusTitulos', function () {
+    var ddo = {};
+    ddo.restrict = 'E';
+    ddo.template = '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>';
+    ddo.controller = function ($scope, recursoFoto) {
+      recursoFoto.query(function (fotos) {
+        $scope.titulos = fotos.map(function (foto) {
+          console.log(foto.titulo);
+          return foto.titulo;
+        });
+      });
+    }; // fim do controller
+    return ddo;
   });
